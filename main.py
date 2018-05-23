@@ -155,7 +155,9 @@ def cmd_weather_history(bot, update, job_queue, args):
     last_cmd = cmd_weather_history
     last_cmd_text = 'history'
     if not args:
-        update.message.reply_text("Хорошо, если сейчас напишите город, то я выведу информацию о погоде за прошедшую неделю.",
+        available_cities = ', '.join([x[0] for x in watch_cities])
+        update.message.reply_text("Хорошо, если сейчас напишите город, то я выведу информацию о погоде за прошедшую неделю.\n\n"
+                                  "Псссс, я пока умею только в следующие города:\n({})".format(available_cities),
                                   reply_markup=reply_markup, parse_mode=telegram.ParseMode.HTML)
     else:
         city = ' '.join(args)
